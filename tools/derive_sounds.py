@@ -31,24 +31,29 @@ import soundfile as sf
 
 SOURCES = ("fart1", "fart2")
 
-# --- layering: the same sample at several speeds, mixed. The detuned pair is what
-# --- gives the "more than one voice" quality rather than just a slow fart.
-LAYERS = ((0.50, 1.00), (0.62, 0.75), (0.78, 0.45))   # (playback rate, gain)
+# --- layering: the same sample at several speeds, mixed.
+# --- The lead layer stays near original pitch on purpose. What identifies a fart is its
+# --- buzzy mid-band and its attack, and dropping the lead a full octave smears both into
+# --- an anonymous drone — the effect reads as "huge" but no longer as "fart". The octave-
+# --- down copies sit underneath as weight, quiet enough not to mask the lead.
+LAYERS = ((0.88, 1.00), (0.62, 0.40), (0.45, 0.22))   # (playback rate, gain)
 
-# --- tone
-SHELF_HZ, SHELF_DB = 200.0, 7.0
-DRIVE = 1.6                    # gentler than a pure bass boost; reverb adds its own weight
+# --- tone. Boost lower and by less than before: a big shelf at 200 Hz eats the buzz band.
+SHELF_HZ, SHELF_DB = 140.0, 4.0
+DRIVE = 1.35                   # heavy drive smears the attack, which is half the recognition
 
-# --- echo: the audible repeats
-ECHO_MS = 260.0
-ECHO_FEEDBACK = 0.62
-ECHO_REPEATS = 4
+# --- echo: the audible repeats. Spaced wider and decaying faster so the first repeat does
+# --- not land on top of the source still ringing.
+ECHO_MS = 300.0
+ECHO_FEEDBACK = 0.50
+ECHO_REPEATS = 3
 
-# --- reverb: a big dark hall
-RT60 = 2.6                     # seconds to -60 dB
-PREDELAY_MS = 45.0
+# --- reverb: a big dark hall, but kept behind the source rather than on top of it.
+RT60 = 2.0                     # seconds to -60 dB
+PREDELAY_MS = 90.0             # the single biggest factor in the source staying legible:
+                               # the hall does not start until the fart itself has landed
 TAIL_DAMP_HZ = 2600.0          # tail is low-passed; a bright tail sounds like a tin can
-WET = 0.78                     # heavily wet, this is the whole point
+WET = 0.45                     # was 0.78, which left almost no dry signal to recognise
 EARLY_TAPS_MS = ((23.0, 0.50), (41.0, 0.42), (67.0, 0.34), (98.0, 0.26), (137.0, 0.18))
 SEED = 0xFA27
 
