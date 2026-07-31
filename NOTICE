@@ -15,8 +15,8 @@ ARTIFACTS SOUND ASSETS — DERIVATIVE WORKS SHIPPED IN THIS REPOSITORY
 
 These two files are NOT covered by the Unlicense dedication above:
 
-    src/main/resources/assets/fartbomb/sounds/big_fart1.ogg
-    src/main/resources/assets/fartbomb/sounds/big_fart2.ogg
+    src/main/resources/assets/fartbomb/sounds/god-voice-fart-1.ogg
+    src/main/resources/assets/fartbomb/sounds/god-voice-fart-2.ogg
 
 They are derivative works of assets/artifacts/sounds/fart1.ogg and fart2.ogg from
 the Artifacts mod by ochotonida (https://github.com/ochotonida/artifacts), produced

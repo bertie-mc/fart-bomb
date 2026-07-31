@@ -29,7 +29,8 @@ import zipfile
 import numpy as np
 import soundfile as sf
 
-SOURCES = ("fart1", "fart2")
+# (source sample in the Artifacts jar, file we write)
+SOURCES = (("fart1", "god-voice-fart-1"), ("fart2", "god-voice-fart-2"))
 
 # --- layering: the same sample at several speeds, mixed.
 # --- The lead layer stays near original pitch on purpose. What identifies a fart is its
@@ -203,7 +204,7 @@ def main() -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     with zipfile.ZipFile(args.jar) as jar:
-        for name in SOURCES:
+        for name, out_name in SOURCES:
             with jar.open(f"assets/artifacts/sounds/{name}.ogg") as fh:
                 src, sr = sf.read(fh, dtype="float64", always_2d=False)
             if src.ndim > 1:  # mono, or Minecraft stops treating it as positional
@@ -222,7 +223,7 @@ def main() -> None:
 
             after = (float(np.sqrt((y ** 2).mean())), low_ratio(y, sr), len(y) / sr)
 
-            dest = out_dir / f"big_{name}.ogg"
+            dest = out_dir / f"{out_name}.ogg"
             sf.write(dest, y, sr, format="OGG", subtype="VORBIS")
 
             print(f"{name} -> {dest.name}")

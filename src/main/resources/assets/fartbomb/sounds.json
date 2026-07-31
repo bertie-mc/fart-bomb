@@ -2,8 +2,8 @@
   "item.whoopee_cushion.big_fart": {
     "subtitle": "fartbomb.subtitles.item.whoopee_cushion.big_fart",
     "sounds": [
-      "fartbomb:big_fart1",
-      "fartbomb:big_fart2"
+      "fartbomb:god-voice-fart-1",
+      "fartbomb:god-voice-fart-2"
     ]
   }
 }

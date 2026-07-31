@@ -45,7 +45,7 @@ public class FartBomb {
             DeferredRegister.create(Registries.SOUND_EVENT, MOD_ID);
 
     /**
-     * The detonation fart — our own {@code big_fart1}/{@code big_fart2} samples, derived
+     * The detonation fart — our own {@code god-voice-fart-1}/{@code -2} samples, derived
      * from Artifacts' by {@code tools/derive_sounds.py} (see NOTICE). Registered as a
      * variable-range event so the volume passed at play time widens how far it carries.
      */
