@@ -1,0 +1,9 @@
+{
+  "item.whoopee_cushion.big_fart": {
+    "subtitle": "fartbomb.subtitles.item.whoopee_cushion.big_fart",
+    "sounds": [
+      { "name": "artifacts:fart1", "pitch": 0.5 },
+      { "name": "artifacts:fart2", "pitch": 0.5 }
+    ]
+  }
+}

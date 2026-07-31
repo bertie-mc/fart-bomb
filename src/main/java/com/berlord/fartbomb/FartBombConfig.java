@@ -17,6 +17,8 @@ public final class FartBombConfig {
     public static final ModConfigSpec.BooleanValue BREAK_BLOCKS;
     public static final ModConfigSpec.BooleanValue START_FIRES;
     public static final ModConfigSpec.BooleanValue TRIGGER_WHEN_BURNING;
+    public static final ModConfigSpec.BooleanValue REPLACE_SOUND;
+    public static final ModConfigSpec.DoubleValue SOUND_VOLUME;
     public static final ModConfigSpec.DoubleValue OFFSET_BEHIND;
     public static final ModConfigSpec.DoubleValue OFFSET_BELOW;
 
@@ -45,6 +47,22 @@ public final class FartBombConfig {
         TRIGGER_WHEN_BURNING = builder
                 .comment("Whether being on fire is enough on its own, with no hot block underfoot.")
                 .define("triggerWhenBurning", true);
+
+        builder.pop();
+
+        builder.comment("The deeper fart that replaces the normal one when a fart detonates.")
+                .push("sound");
+
+        REPLACE_SOUND = builder
+                .comment("Swap the normal fart for the deeper one. False keeps the normal fart and still explodes.")
+                .define("replaceSound", true);
+
+        SOUND_VOLUME = builder
+                .comment(
+                        "How far the detonation fart carries. This is range, NOT loudness:",
+                        "Minecraft clamps a sound's final volume to 1.0, so values above 1.0 only widen",
+                        "the radius over which it can be heard. 1.0 matches a normal fart.")
+                .defineInRange("volume", 4.0, 0.0, 16.0);
 
         builder.pop();
 
