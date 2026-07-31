@@ -10,3 +10,19 @@ licences and none of their content is redistributed in this repository.
 
 Compile-time dependencies are resolved from public mavens (Modrinth, NeoForged,
 Architectury, FTB) at build time. No third-party jar is committed.
+
+ARTIFACTS SOUND ASSETS
+
+assets/fartbomb/sounds.json defines this mod's "big_fart" sound event in terms of
+two sound files that belong to the Artifacts mod by ochotonida
+(https://github.com/ochotonida/artifacts, MIT):
+
+    artifacts:fart1
+    artifacts:fart2
+
+Those files are referenced by name and played from Artifacts' own assets at
+runtime. Neither file, nor any derivative of either, is copied into or shipped by
+this repository — the reference resolves only when Artifacts is installed, and the
+sound event simply fails to load if it is not. Should a processed copy ever be
+vendored here instead, MIT requires Artifacts' copyright notice and licence text to
+travel with it, and this notice must be updated to say so.
