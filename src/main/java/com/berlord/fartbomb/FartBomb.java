@@ -29,7 +29,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
  * {@link com.berlord.fartbomb.mixin.ServerLevelMixin} for why the hook is on the sound
  * rather than on the {@code artifacts:fart} game event.
  *
- * <p>When a fart detonates its ordinary sound is suppressed and {@link #BIG_FART} plays in
+ * <p>When a fart detonates its ordinary sound is suppressed and {@link #GOD_VOICE_FART} plays in
  * its place — the same audio an octave down, which is as deep as Minecraft's sound engine
  * allows.
  */
@@ -49,10 +49,10 @@ public class FartBomb {
      * from Artifacts' by {@code tools/derive_sounds.py} (see NOTICE). Registered as a
      * variable-range event so the volume passed at play time widens how far it carries.
      */
-    public static final DeferredHolder<SoundEvent, SoundEvent> BIG_FART = SOUNDS.register(
-            "item.whoopee_cushion.big_fart",
+    public static final DeferredHolder<SoundEvent, SoundEvent> GOD_VOICE_FART = SOUNDS.register(
+            "god_voice_fart",
             () -> SoundEvent.createVariableRangeEvent(
-                    ResourceLocation.fromNamespaceAndPath(MOD_ID, "item.whoopee_cushion.big_fart")));
+                    ResourceLocation.fromNamespaceAndPath(MOD_ID, "god_voice_fart")));
 
     public FartBomb(IEventBus modBus, ModContainer container) {
         SOUNDS.register(modBus);
@@ -148,7 +148,7 @@ public class FartBomb {
             level.playSound(
                     null,
                     player.getX(), player.getY(), player.getZ(),
-                    BIG_FART.get(),
+                    GOD_VOICE_FART.get(),
                     SoundSource.PLAYERS,
                     (float) FartBombConfig.SOUND_VOLUME.getAsDouble(),
                     1.0F);

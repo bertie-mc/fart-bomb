@@ -55,7 +55,7 @@ The fart *probability* is not here — that is Artifacts' own
 
 ## The detonation sound
 
-`fartbomb:item.whoopee_cushion.big_fart` — `god-voice-fart-1.ogg` / `god-voice-fart-2.ogg`, derived from
+`fartbomb:god_voice_fart` — `god-voice-fart-1.ogg` / `god-voice-fart-2.ogg`, derived from
 Artifacts' own fart samples by [`tools/derive_sounds.py`](tools/derive_sounds.py): pitched
 down to 0.7×, a +9 dB low shelf under 180 Hz, tanh saturation so the boosted low end still
 reads on laptop speakers, then normalised to −0.5 dBFS. That last step matters most — the

@@ -1,6 +1,6 @@
 {
-  "item.whoopee_cushion.big_fart": {
-    "subtitle": "fartbomb.subtitles.item.whoopee_cushion.big_fart",
+  "god_voice_fart": {
+    "subtitle": "fartbomb.subtitles.god_voice_fart",
     "sounds": [
       "fartbomb:god-voice-fart-1",
       "fartbomb:god-voice-fart-2"
