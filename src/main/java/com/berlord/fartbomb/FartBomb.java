@@ -45,9 +45,9 @@ public class FartBomb {
             DeferredRegister.create(Registries.SOUND_EVENT, MOD_ID);
 
     /**
-     * The detonation fart. Defined in {@code assets/fartbomb/sounds.json} as Artifacts' own
-     * fart samples at pitch 0.5, and registered as a variable-range event so the volume
-     * passed at play time widens how far it carries.
+     * The detonation fart — our own {@code big_fart1}/{@code big_fart2} samples, derived
+     * from Artifacts' by {@code tools/derive_sounds.py} (see NOTICE). Registered as a
+     * variable-range event so the volume passed at play time widens how far it carries.
      */
     public static final DeferredHolder<SoundEvent, SoundEvent> BIG_FART = SOUNDS.register(
             "item.whoopee_cushion.big_fart",

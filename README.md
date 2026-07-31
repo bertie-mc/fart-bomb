@@ -9,13 +9,10 @@ A Whoopee Cushion fart that goes off while the wearer is alight **explodes**.
 
 ## What it does
 
-Artifacts' Whoopee Cushion rolls its `artifacts:flatulence` chance on two occasions — the
-moment you *start* crouching, and a double jump. When the roll succeeds it plays a fart and
-fires an `artifacts:fart` game event.
-
-This mod listens for that game event. If the farting player is **on fire** or standing on a
-**fiery surface**, the fart detonates: an explosion centred 0.3 blocks behind and 0.3 blocks
-below the midpoint of the player's hitbox.
+Artifacts' Whoopee Cushion farts on three occasions: the moment you *start* crouching, a
+double jump, and equipping the cushion. If the farting player is **on fire** or standing on a
+**fiery surface**, the fart detonates — an explosion centred 0.3 blocks behind and 0.3 blocks
+below the midpoint of the player's hitbox, and a deeper, louder fart in place of the usual one.
 
 ### What counts as a fiery surface
 
@@ -44,18 +41,43 @@ campfire is just a wooden step.
 | `explosion.breakBlocks` | `true` | Destroy terrain. `false` still damages entities |
 | `explosion.startFires` | `false` | Leave fire behind — compounds, since fire is a trigger |
 | `explosion.triggerWhenBurning` | `true` | Being on fire is enough on its own |
+| `sound.replaceSound` | `true` | Swap the normal fart for the detonation one |
+| `sound.volume` | `4.0` | **Range, not loudness** — see below |
 | `placement.offsetBehind` | `0.3` | Blocks behind the player, along their facing |
 | `placement.offsetBelow` | `0.3` | Blocks below the hitbox midpoint |
+
+`sound.volume` above `1.0` does not make the sound louder: `SoundEngine` clamps a sound's
+final volume to `1.0` and uses values above that only to widen the radius over which it can
+be heard. Loudness comes from the audio file itself.
 
 The fart *probability* is not here — that is Artifacts' own
 `config/artifacts/items.toml`, under `[whoopee_cushion] fartChance`.
 
+## The detonation sound
+
+`fartbomb:item.whoopee_cushion.big_fart` — `big_fart1.ogg` / `big_fart2.ogg`, derived from
+Artifacts' own fart samples by [`tools/derive_sounds.py`](tools/derive_sounds.py): pitched
+down to 0.7×, a +9 dB low shelf under 180 Hz, tanh saturation so the boosted low end still
+reads on laptop speakers, then normalised to −0.5 dBFS. That last step matters most — the
+sources peak at 0.35 and 0.63, leaving most of their headroom unused.
+
+Measured against the originals: **+10.4 dB** and **+7.4 dB** RMS, with energy below 250 Hz
+going from 3.4% → 50.5% and 11.7% → 32.3%.
+
+These two files are derivative works of MIT-licensed assets and are carved out of this
+repository's Unlicense dedication — see [NOTICE](NOTICE).
+
 ## Implementation note
 
-No mixins and no compile-time dependency on Artifacts. NeoForge posts
-`VanillaGameEvent` unconditionally from `ServerLevel#gameEvent` for **every** game event,
-modded ones included, so matching on the `artifacts:fart` resource key catches exactly the
-moment a fart lands. If Artifacts is absent the event simply never fires.
+No compile-time dependency on Artifacts; the mod matches its sound by resource location.
+
+The hook is a mixin on `ServerLevel#playSeededSound` (both overloads — entity and
+positional), because Artifacts' three farts do **not** share a code path. Crouching and
+double-jumping go through its flatulence roll and fire an `artifacts:fart` game event;
+equipping the cushion plays the same sound from the accessory framework's equip hook and
+fires no game event at all. The sound is the only thing common to all three. Mixing into
+`ServerLevel` rather than `Level` keeps the client's copy untouched, so it cannot fire twice
+in single-player.
 
 ## Install
 

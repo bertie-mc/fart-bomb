@@ -11,18 +11,42 @@ licences and none of their content is redistributed in this repository.
 Compile-time dependencies are resolved from public mavens (Modrinth, NeoForged,
 Architectury, FTB) at build time. No third-party jar is committed.
 
-ARTIFACTS SOUND ASSETS
+ARTIFACTS SOUND ASSETS — DERIVATIVE WORKS SHIPPED IN THIS REPOSITORY
 
-assets/fartbomb/sounds.json defines this mod's "big_fart" sound event in terms of
-two sound files that belong to the Artifacts mod by ochotonida
-(https://github.com/ochotonida/artifacts, MIT):
+These two files are NOT covered by the Unlicense dedication above:
 
-    artifacts:fart1
-    artifacts:fart2
+    src/main/resources/assets/fartbomb/sounds/big_fart1.ogg
+    src/main/resources/assets/fartbomb/sounds/big_fart2.ogg
 
-Those files are referenced by name and played from Artifacts' own assets at
-runtime. Neither file, nor any derivative of either, is copied into or shipped by
-this repository — the reference resolves only when Artifacts is installed, and the
-sound event simply fails to load if it is not. Should a processed copy ever be
-vendored here instead, MIT requires Artifacts' copyright notice and licence text to
-travel with it, and this notice must be updated to say so.
+They are derivative works of assets/artifacts/sounds/fart1.ogg and fart2.ogg from
+the Artifacts mod by ochotonida (https://github.com/ochotonida/artifacts), produced
+by pitch-shifting, low-shelf equalisation, saturation and normalisation. The exact
+transformation is reproducible via tools/derive_sounds.py in this repository.
+
+Artifacts is MIT licensed, which permits this modification and redistribution on
+condition that its copyright notice and permission notice travel with the derived
+material. They are reproduced in full below and apply to those two files.
+
+--------------------------------------------------------------------------------
+
+MIT License
+
+Copyright (c) 2019 Wouter Pauwels
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
