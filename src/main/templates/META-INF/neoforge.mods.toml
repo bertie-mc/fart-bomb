@@ -1,0 +1,34 @@
+modLoader = "javafml"
+loaderVersion = "${loader_version_range}"
+license = "${mod_license}"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
+authors = "${mod_authors}"
+description = '''${mod_description}'''
+
+[[dependencies."${mod_id}"]]
+modId = "neoforge"
+type = "required"
+versionRange = "${neo_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies."${mod_id}"]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+# Artifacts supplies the artifacts:fart game event this mod listens for. Without it
+# the mod loads and simply never fires, so the dependency is optional rather than
+# required — but it must load first so its game event is registered.
+[[dependencies."${mod_id}"]]
+modId = "artifacts"
+type = "optional"
+versionRange = "[13,)"
+ordering = "AFTER"
+side = "BOTH"
