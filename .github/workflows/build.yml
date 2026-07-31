@@ -11,16 +11,18 @@ permissions:
 
 jobs:
   build:
-    uses: bertie-mc/bertie-ci/.github/workflows/build-mod.yml@v3.3.3
+    uses: bertie-mc/bertie-ci/.github/workflows/build-mod.yml@v3.4.0
 
   client:
     needs: build
-    uses: bertie-mc/bertie-ci/.github/workflows/client.yml@v3.3.3
+    uses: bertie-mc/bertie-ci/.github/workflows/client.yml@v3.4.0
     with:
       artifact-name: ${{ needs.build.outputs.artifact-name }}
+      fixture: artifacts
 
   server:
     needs: build
-    uses: bertie-mc/bertie-ci/.github/workflows/server.yml@v3.3.3
+    uses: bertie-mc/bertie-ci/.github/workflows/server.yml@v3.4.0
     with:
       artifact-name: ${{ needs.build.outputs.artifact-name }}
+      fixture: artifacts
