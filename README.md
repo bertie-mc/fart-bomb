@@ -40,7 +40,7 @@ campfire is just a wooden step.
 | Key | Default | Meaning |
 |---|---|---|
 | `explosion.enabled` | `true` | Master switch |
-| `explosion.power` | `2.0` | Radius. TNT is 4.0, a creeper 3.0 |
+| `explosion.power` | `3.0` | Radius — creeper-strength. TNT is 4.0. Damage reaches `2 x power` blocks |
 | `explosion.breakBlocks` | `true` | Destroy terrain. `false` still damages entities |
 | `explosion.startFires` | `false` | Leave fire behind — compounds, since fire is a trigger |
 | `explosion.triggerWhenBurning` | `true` | Being on fire is enough on its own |

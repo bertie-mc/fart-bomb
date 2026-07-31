@@ -31,8 +31,8 @@ public final class FartBombConfig {
                 .define("enabled", true);
 
         POWER = builder
-                .comment("Explosion radius. TNT is 4.0, a creeper is 3.0.")
-                .defineInRange("power", 2.0, 0.0, 32.0);
+                .comment("Explosion radius. A creeper is 3.0, TNT is 4.0. Damage reaches 2x this many blocks.")
+                .defineInRange("power", 3.0, 0.0, 32.0);
 
         BREAK_BLOCKS = builder
                 .comment("Whether the explosion destroys terrain. False still damages entities.")
