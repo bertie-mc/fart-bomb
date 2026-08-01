@@ -1,3 +1,5 @@
+> **Development has moved:** See [the `fart-bomb` module in the Bertie monorepo](https://github.com/bertie-mc/bertie/tree/main/mods/fart-bomb). This repository is retained read-only for historical tags, releases, and issues.
+
 # Fart Bomb
 
 A Whoopee Cushion fart that goes off while the wearer is alight **explodes**.
