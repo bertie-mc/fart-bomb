@@ -1,4 +1,5 @@
 import org.gradle.language.jvm.tasks.ProcessResources
+import org.gradle.api.tasks.testing.Test
 
 plugins {
     `java-library`
@@ -34,6 +35,8 @@ base {
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
+val gameTest = sourceSets.create("gameTest")
+
 neoForge {
     version = neo_version
 
@@ -46,6 +49,10 @@ neoForge {
         register("client") {
             client()
         }
+        register("gameTestServer") {
+            type = "gameTestServer"
+            systemProperty("neoforge.enabledGameTestNamespaces", "minecraft")
+        }
         configureEach {
             systemProperty("forge.logging.markers", "REGISTRIES")
             logLevel = org.slf4j.event.Level.DEBUG
@@ -55,8 +62,24 @@ neoForge {
     mods {
         register(mod_id) {
             sourceSet(sourceSets.main.get())
+            sourceSet(gameTest)
         }
     }
+
+    addModdingDependenciesTo(gameTest)
+}
+
+gameTest.compileClasspath += sourceSets.main.get().output
+gameTest.runtimeClasspath += sourceSets.main.get().output
+
+dependencies {
+    testImplementation(platform("org.junit:junit-bom:6.1.2"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+tasks.named<Test>("test") {
+    useJUnitPlatform()
 }
 
 val generateModMetadata = tasks.register<ProcessResources>("generateModMetadata") {

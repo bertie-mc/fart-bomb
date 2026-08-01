@@ -88,6 +88,12 @@ folder. Requires NeoForge for Minecraft 1.21.1.
 
 `gradle build` — the built JAR is written to `build/libs/`.
 
+## Tests
+
+`gradle test` covers sound recognition, detonation decisions, and explosion placement.
+`gradle runGameTestServer` verifies the server mixins, fiery block tags, and a real
+burning-player detonation. GameTest code is kept out of the release JAR.
+
 ## License
 
 Released into the public domain under **The Unlicense** — see [UNLICENSE](UNLICENSE).
