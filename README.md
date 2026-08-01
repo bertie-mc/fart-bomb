@@ -86,7 +86,7 @@ folder. Requires NeoForge for Minecraft 1.21.1.
 
 ## Building
 
-`./gradlew build` — the built JAR is written to `build/libs/`.
+`gradle build` — the built JAR is written to `build/libs/`.
 
 ## License
 
